@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<SCRIPT LANGUAGE="JavaScript">
+var ReportArg="";
+var ReportKey="";
+function window_onload() {
+  if (window.opener+"" != "undefined") {
+  	ReportArg = window.opener.ReportArg;
+  	ReportKey = window.opener.ReportKey;
+  	ProciReport();
+  }
+}
+function ProciReport(){
+	var newPM=document.createElement("Input");
+	document.getElementById("SubmitForm").appendChild(newPM);
+	newPM.id="node_skey";
+	newPM.name="node_skey";
+	newPM.value = ReportKey; //iReport報表節點--必須輸入(每個報表的id)
+	
+	var newPM=document.createElement("Input");
+	document.getElementById("SubmitForm").appendChild(newPM);
+	newPM.id="arg";
+	newPM.name="arg";
+	newPM.value = escape(ReportArg);
+	document.SubmitForm.submit();
+}
+</SCRIPT>
+</HEAD>
+<BODY onload="window_onload();" STYLE="cursor:normal;font-family;fixedsys;">
+<FORM Action="http://wbyhfc06/HFCFI/AR/ARRunIReport.asp" NAME="SubmitForm" Method="Post" Style="VISIBILITY:HIDDEN"> 
+</FORM>
+</BODY>
+</HTML>    

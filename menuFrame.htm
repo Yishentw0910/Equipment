@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" rev="stylesheet" href="css/rent.css" />
+    <base target="_self"  />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="MSThemeCompatible" content="No" />
+    <script type="text/javascript" src="js/dhtmlxcommon.js"></script>
+    <script type="text/javascript" src="js/dhtmlxtree.js"></script>
+    <script language="javascript">
+  //屏蔽右键
+  document.oncontextmenu = new Function("return false");
+
+  var GSTR_ModuleId = new Array();
+  var GINT_ModuleId = 0;
+  var GSTR_Flag = "";
+  function tonclick(id) {
+    tree.setItemColor(id, "#000000", "#CC0100");
+    funx(id, tree.getItemText(id));
+  }
+  //=======================================================================================
+  ///= Comment 	 : 页面载入
+  ///= Parameter : 无
+  ///= Returns   : 无
+  ///= Auther    	: Stacey
+  ///= Update    	: 2009-07-28
+  //========================================================================================
+  function window_onload() {
+    var LSTR_UserId = top.GSTR_UserId;
+    var LSTR_AP = "";
+    var LSTR_Group = "";
+
+    tree = new dhtmlXTreeObject("treeboxbox_tree1", "", "", 0);
+    tree.setImagePath("images/menu/");
+    tree.setOnClickHandler(tonclick);
+    tree.attachEvent("onClick", "openChild");
+
+    tree.insertNewChild(0, "M010", "進件管理", 0, "index.gif", 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML1001.aspx");
+    GSTR_ModuleId.push("FrmML1002.aspx");
+    GSTR_ModuleId.push("FrmML1003.aspx");
+    tree.insertNewChild("M010", "FrmML1001.aspx", "客戶資料維護", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M010", "FrmML1002.aspx", "案件申請維護", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M010", "FrmML1003.aspx", "進件查詢核准", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.insertNewChild(0, "M020", "徵審管理", 0, 0, 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML2001.aspx");
+    GSTR_ModuleId.push("FrmML2002.aspx");
+    tree.insertNewChild("M020", "FrmML2001.aspx", "徵信核准", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M020", "FrmML2002.aspx", "進件列印作業", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.insertNewChild(0, "M030", "撥款管理", 0, 0, 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML3001.aspx");
+    GSTR_ModuleId.push("FrmML3002.aspx");
+    GSTR_ModuleId.push("FrmML3003.aspx");
+    GSTR_ModuleId.push("FrmML3004.aspx");
+    GSTR_ModuleId.push("FrmML3005.aspx");
+    GSTR_ModuleId.push("FrmML3006.aspx");
+    tree.insertNewChild("M030", "FrmML3001.aspx", "案件核准", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M030", "FrmML3002.aspx", "撥款申請維護", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M030", "FrmML3003.aspx", "撥款核准(信管)", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M030", "FrmML3004.aspx", "撥款確認(財務單位)", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M030", "FrmML3005.aspx", "撥款一覽表列印作業", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M030", "FrmML3006.aspx", "攤提表列印作業", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.insertNewChild(0, "M040", "財務發票管理", 0, 0, 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML4001.aspx");
+    GSTR_ModuleId.push("FrmML4004.aspx");
+    GSTR_ModuleId.push("FrmML4005.aspx");
+    GSTR_ModuleId.push("FrmML4006.aspx");
+    GSTR_ModuleId.push("FrmML4007.aspx");
+    GSTR_ModuleId.push("FrmML4008.aspx");
+    GSTR_ModuleId.push("FrmML4009.aspx");
+		GSTR_ModuleId.push("FrmML4010.aspx");
+		GSTR_ModuleId.push("FrmML4011.aspx");
+		GSTR_ModuleId.push("FrmML4020.aspx");
+    tree.insertNewChild("M040", "FrmML4001.aspx", "發票及繳款方式維護", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M040", "FrmML4004.aspx", "預開發票資料維護", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M040", "FrmML4005.aspx", "發票開立狀態明細表", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M040", "FrmML4006.aspx", "銷貨發票明細表", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M040", "FrmML4007.aspx", "非批次開立作業", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M040", "FrmML4008.aspx", "批次開立作業", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M040", "FrmML4009.aspx", "每月批次發票開立設定", 0, 0, 0, 0, "CHILD,CHECKED");
+		tree.insertNewChild("M040", "FrmML4010.aspx", "發票異動維護作業", 0, 0, 0, 0, "CHILD,CHECKED");
+		tree.insertNewChild("M040", "FrmML4011.aspx", "發票重印作業", 0, 0, 0, 0, "CHILD,CHECKED");
+		tree.insertNewChild("M040", "FrmML4020.aspx", "繳款單查詢列印作業", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.insertNewChild(0, "M050", "回件管理", 0, 0, 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML5001.aspx");
+    GSTR_ModuleId.push("FrmML5002.aspx");
+    GSTR_ModuleId.push("FrmML5003.aspx");
+    tree.insertNewChild("M050", "FrmML5001.aspx", "回件資料維護(營業)", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M050", "FrmML5002.aspx", "回件資料確認(財支)", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M050", "FrmML5003.aspx", "回件資料確認(客服)", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.insertNewChild(0, "M060", "查詢管理", 0, 0, 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML6001.aspx");
+    GSTR_ModuleId.push("FrmML6002.aspx");
+    GSTR_ModuleId.push("FrmML6003.aspx");
+    tree.insertNewChild("M060", "FrmML6001.aspx", "保有契約查詢", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M060", "FrmML6002.aspx", "撥款權限維護", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M060", "FrmML6003.aspx", "往來查詢", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.insertNewChild(0, "M070", "轉檔功能", 0, 0, 0, 0, "CHILD,CHECKED");
+    GSTR_ModuleId.push("FrmML7001.aspx");
+    GSTR_ModuleId.push("FrmML7002.aspx");
+    GSTR_ModuleId.push("FrmML7003.aspx");
+    tree.insertNewChild("M070", "FrmML7001.aspx", "撥款應付立帳", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M070", "FrmML7002.aspx", "進項發票轉應付立帳", 0, 0, 0, 0, "CHILD,CHECKED");
+    tree.insertNewChild("M070", "FrmML7003.aspx", "標的物轉固定資產", 0, 0, 0, 0, "CHILD,CHECKED");
+
+    tree.closeAllItems("0");
+  }
+  //=======================================================================================
+  ///= Comment 	 : 登出系统
+  ///= Parameter : 
+  ///= Returns   : 
+  ///= Auther    	: Stacey
+  ///= Update    	: 2009-07-28
+  //========================================================================================
+  function funx(url) {
+    var obj = "mainFrame";
+    for (var LINT_Row = 0; LINT_Row < GSTR_ModuleId.length; LINT_Row++) {
+      if (url == GSTR_ModuleId[LINT_Row]) {
+        window.open(url, obj);
+        return;
+      }
+    }
+  }
+  //=======================================================================================
+  ///= Comment 	 : 打开左边菜单
+  ///= Parameter : 
+  ///= Returns   : 
+  ///= Auther    	: Stacey
+  ///= Update    	: 2009-07-28
+  //========================================================================================
+  function openChild() {
+    var id = tree.getSelectedItemId();
+    if (tree.getOpenState(id) == "1") {
+      tree.closeItem(id);
+    }
+    else {
+      tree.openItem(id);
+    }
+  }
+</script>
+<title>機器設備租賃系统</title>
+</head>
+
+<body style="background:url(images/bgleft.jpg) repeat-y;" onload="window_onload();">
+<div class="menuframe">
+	<div class="menu_content">
+		<div id="treeboxbox_tree1" style="margin:5px;line-height:30px;"></div>
+	</div>
+</div>
+</body>
+</html>
